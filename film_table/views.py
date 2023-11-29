@@ -15,7 +15,6 @@ def films(req):
     forma = FilmForm()
     formapoisk = FilmPoisk()
     if req.POST:
-        forma = FilmForm(req.POST)
         k1 = req.POST.get('country')
         k2 = req.POST.get('title')
         k3 = req.POST.get('year')

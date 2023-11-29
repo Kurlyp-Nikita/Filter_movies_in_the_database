@@ -53,9 +53,9 @@
         <table>
                 <tr>
                     <th>ID</th>
-                    <th>NAME</th>
-                    <th>COLOR</th>
-                    <th>WEIGHT</th>
+                    <th>COUNTRY</th>
+                    <th>TITLE</th>
+                    <th>YEAR</th>
                 </tr>
                 {% for one in databasepoisk %}
                 <tr>
@@ -67,7 +67,7 @@
             {% endfor %}
         </table>
     {% else %}
-        <p>фильмы не найдены</p>
+        <p>Ищите свои фильмы</p>
     {% endif %}
 </body>
 </html>
