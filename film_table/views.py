@@ -62,13 +62,15 @@ def edit_film(req, id):
     print(id)
     onefilm = Film.objects.get(id=id)
     forma = FilmForm()
-    data = {'forma': forma}
+
     if req.POST:
         onefilm.country = req.POST.get('country')
         onefilm.title = req.POST.get('title')
         onefilm.year = req.POST.get('year')
         onefilm.save()
         return redirect('films')
+
+    data = {'forma': forma}
     return render(req, 'edit.html', data)
 
 
