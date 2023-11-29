@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FILM_TABLE</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+</head>
+<body>
+    <h2>Таблица</h2>
+    <a href="{% url 'addfilms' %}">
+        <button>Добавить фильм</button>
+    </a>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>COUNTRY</th>
+            <th>TITLE</th>
+            <th>YEAR</th>
+        </tr>
+        {% for one in database_films %}
+            <tr>
+                <td>{{ one.id }}</td>
+                <td>{{ one.country }}</td>
+                <td>{{ one.title }}</td>
+                <td>{{ one.year }}</td>
+                <td>
+                    <a href="{% url 'edit_film' one.id %}">Изменить</a>
+                </td>
+                <td>
+                    <a href="{% url 'delete_film' one.id %}">Удалить</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <form action="{% url 'films' %}" method="post">
+        {% csrf_token %}
+        <table>
+            {{ forma }}
+        </table>
+        <input type="submit" value="Добавить">
+    </form>
+    <hr>
+    <h2>Поиск</h2>
+    <form action="{% url 'poisk_film' %}" method="post">
+        {% csrf_token %}
+        <table>
+            {{ formapoisk }}
+        </table>
+        <input type="submit" value="Искать">
+    </form>
+    {% if databasepoisk %}
+        <table>
+                <tr>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>COLOR</th>
+                    <th>WEIGHT</th>
+                </tr>
+                {% for one in databasepoisk %}
+                <tr>
+                    <td>{{ one.id }}</td>
+                    <td>{{ one.country }}</td>
+                    <td>{{ one.title }}</td>
+                    <td>{{ one.year }}</td>
+                <tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>фильмы не найдены</p>
+    {% endif %}
+</body>
+</html>
+
+
